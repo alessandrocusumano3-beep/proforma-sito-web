@@ -1,0 +1,76 @@
+.logo {
+  margin-inline: auto;
+}
+
+.logo-letter-wrap {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.logo-letter {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  transform-origin: center bottom;
+  will-change: transform, opacity, filter;
+}
+
+.logo--navbar {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  transition: transform 0.22s ease, filter 0.22s ease, opacity 0.22s ease;
+}
+
+.logo--navbar .logo-letter {
+  height: 38px;
+  opacity: 0.96;
+  transition: transform 0.24s ease, opacity 0.24s ease;
+}
+
+.navbar-logo:hover .logo--navbar {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 8px rgba(0, 255, 136, 0.3));
+}
+
+.navbar-logo:hover .logo--navbar .logo-letter {
+  transform: scale(1.04);
+  opacity: 1;
+}
+
+.logo--hero {
+  width: min(100%, 720px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(2px, 0.6vw, 6px);
+}
+
+.logo--hero .logo-row {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(3px, 0.8vw, 9px);
+}
+
+.logo--hero .logo-letter {
+  height: clamp(32px, 6vw, 76px);
+  opacity: 0;
+}
+
+@media (max-width: 720px) {
+  .logo--navbar .logo-letter {
+    height: 32px;
+  }
+
+  .logo--hero .logo-letter {
+    height: clamp(23px, 6.6vw, 48px);
+  }
+
+  .logo--hero .logo-row {
+    gap: clamp(2px, 0.6vw, 5px);
+  }
+}

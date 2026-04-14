@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import Logo from './components/Logo'
 import { Courses } from './components/Courses'
 import { DaisyBoard } from './components/DaisyBoard'
 import { Footer } from './components/Footer'
 import { GymShowcase } from './components/GymShowcase'
-import { Hero } from './components/Hero'
 import { Locations } from './components/Locations'
 import { Points } from './components/Points'
 import { Rewards } from './components/Rewards'
@@ -12,22 +12,22 @@ import { StaffSection } from './components/StaffSection'
 
 const pointsCategories = [
   { score: 1, actions: ['Ingresso libero in palestra', 'Allenamento cardio guidato'] },
-  { score: 2, actions: ['Personal mini-session', 'Check postura e mobilita'] },
+  { score: 2, actions: ['Personal mini-session', 'Check postura e mobilità'] },
   { score: 3, actions: ['Partecipazione corsi speciali', 'Lezione premium di gruppo'] },
 ]
 
 const courseLocations = [
   {
     location: 'Corteolona',
-    schedule: ['Lunedi 18:30 - Funzionale', 'Mercoledi 19:00 - HIIT', 'Venerdi 18:00 - Core'],
+    schedule: ['Lunedì 18:30 - Funzionale', 'Mercoledì 19:00 - HIIT', 'Venerdì 18:00 - Core'],
   },
   {
     location: "Sant'Angelo",
-    schedule: ['Martedi 19:00 - Total Body', 'Giovedi 18:30 - Calisthenics', 'Sabato 10:30 - Mobility'],
+    schedule: ['Martedì 19:00 - Total Body', 'Giovedì 18:30 - Calisthenics', 'Sabato 10:30 - Mobility'],
   },
   {
     location: 'Gerenzago',
-    schedule: ['Lunedi 19:30 - Tone Up', 'Mercoledi 18:15 - Power Circuit', 'Venerdi 19:00 - Bootcamp'],
+    schedule: ['Lunedì 19:30 - Tone Up', 'Mercoledì 18:15 - Power Circuit', 'Venerdì 19:00 - Bootcamp'],
   },
 ]
 
@@ -45,28 +45,23 @@ const rewards = [
 const gymPlaces = [
   {
     name: 'Palestra di Corteolona',
-    theme: 'green' as const,
+    theme: 'green',
     images: ['/gym-images/corteolona-1.jpg', '/gym-images/corteolona-2.jpg', '/gym-images/corteolona-3.jpg'],
     paragraphs: ['Spazi moderni e area funzionale completa.', 'Allenamenti personalizzati in un ambiente energico.'],
   },
   {
     name: "Palestra di Sant'Angelo",
-    theme: 'dark' as const,
+    theme: 'dark',
     images: ['/gym-images/santangelo-1.jpg', '/gym-images/santangelo-2.jpg', '/gym-images/santangelo-3.jpg'],
     paragraphs: ['Sala corsi ampia e attrezzi di ultima generazione.', 'Community attiva e coach specializzati.'],
   },
   {
     name: 'Palestra di Gerenzago',
-    theme: 'green' as const,
+    theme: 'green',
     images: [
       '/gym-images/gerenzago-1.jpg',
       '/gym-images/gerenzago-2.jpg',
       '/gym-images/gerenzago-3.jpg',
-      '/gym-images/gerenzago-4.png',
-      '/gym-images/gerenzago-5.png',
-      '/gym-images/gerenzago-6.png',
-      '/gym-images/gerenzago-7.png',
-      '/gym-images/gerenzago-8.png',
     ],
     paragraphs: ['Club compatto e super curato per allenarti bene.', 'Programmi su misura per tutti i livelli.'],
   },
@@ -78,56 +73,46 @@ const staffMembers = [
     role: 'Personal Trainer',
     image: '/gym-images/staff-matteo.png',
     bio: 'Percorsi personalizzati per forza, forma fisica e performance.',
-    facePosition: 'center 24%',
   },
   {
     name: 'Chiara Mainardi',
     role: 'Personal Trainer',
     image: '/gym-images/staff-chiara.png',
     bio: 'Allenamento tecnico e supporto costante per obiettivi su misura.',
-    facePosition: 'center 24%',
   },
   {
-    name: 'Valentina Trunfio Dottoressa',
+    name: 'Valentina Trunfio',
     role: 'Specialista Benessere',
     image: '/gym-images/staff-valentina.png',
-    bio: 'Percorsi dedicati al benessere, all equilibrio e alla qualita della vita.',
-    facePosition: 'center 24%',
+    bio: "Percorsi dedicati al benessere e all'equilibrio.",
   },
 ]
 
 const locations = [
-  { name: 'Corteolona', address: 'Via Roma 12, Corteolona (PV)', phone: '0382 000111' },
-  { name: "Sant'Angelo", address: "Via Milano 44, Sant'Angelo Lodigiano (LO)", phone: '0371 000222' },
-  { name: 'Gerenzago', address: 'Via Centrale 9, Gerenzago (PV)', phone: '0382 000333' },
+  { name: 'Corteolona', address: 'Via Olona, 5', phone: '+39 0382 404072' },
+  { name: "Sant'Angelo Lodigiano", address: 'Viale Trento e Trieste', phone: '+39 0371 168 1552' },
+  { name: 'Gerenzago', address: 'Via Villanterio, 32', phone: '+39 0382 154 7437' },
 ]
 
 export default function App() {
   const [isNavbarScrolled, setIsNavbarScrolled] = useState(false)
-  const [isLogoMissing, setIsLogoMissing] = useState(false)
 
   useEffect(() => {
     const onScroll = () => {
       setIsNavbarScrolled(window.scrollY > 14)
     }
-
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
     <div className="app" id="top">
       <header className={`navbar ${isNavbarScrolled ? 'is-scrolled' : ''}`}>
-        <a className="navbar-logo" href="#top" aria-label="Vai alla home">
-          {isLogoMissing ? (
-            <span className="navbar-logo-fallback">Proforma</span>
-          ) : (
-            <img src="/proforma.png" alt="Proforma" onError={() => setIsLogoMissing(true)} />
-          )}
+        <a className="navbar-logo" href="#top">
+          <Logo />
         </a>
 
-        <nav className="navbar-menu" aria-label="Menu principale">
+        <nav className="navbar-menu">
           <a href="#top">Home</a>
           <a href="#home-places">Sedi</a>
           <a href="#corsi">Corsi</a>
@@ -142,12 +127,21 @@ export default function App() {
       <main className="main-content">
         <section className="premium-hero">
           <div className="premium-hero-content">
-            <span className="premium-kicker">Proforma 2020</span>
+            
+            {/* LOGO GRANDE */}
+            <div style={{ marginBottom: 20 }}>
+              <Logo />
+            </div>
+
+            <span className="premium-kicker">PROFORMA 2020</span>
+
             <h1>Fitness moderno per risultati reali.</h1>
+
             <p>
-              Un ecosistema completo tra allenamento, corsi premium e community: scegli la tua sede e inizia
-              oggi il tuo percorso.
+              Un ecosistema completo tra allenamento, corsi premium e community:
+              scegli la tua sede e inizia oggi il tuo percorso.
             </p>
+
             <div className="premium-hero-actions">
               <a href="#contatti" className="premium-primary-cta">
                 Prova gratis
@@ -158,8 +152,8 @@ export default function App() {
             </div>
           </div>
 
-          <aside className="premium-hero-panel" aria-label="Punti di forza">
-            <p className="premium-panel-title">Perche Proforma</p>
+          <aside className="premium-hero-panel">
+            <p className="premium-panel-title">Perché Proforma</p>
             <div className="premium-panel-metrics">
               <article>
                 <strong>3</strong>
@@ -171,28 +165,27 @@ export default function App() {
               </article>
               <article>
                 <strong>+20</strong>
-                <span>Corsi e attivita</span>
+                <span>Corsi e attività</span>
               </article>
-            </div>
-            <div className="premium-tags">
-              <span>Coupon Primavera</span>
-              <span>Calisthenics</span>
-              <span>PT dedicati</span>
             </div>
           </aside>
         </section>
+
         <GymShowcase places={gymPlaces} />
-        <Hero />
         <Points categories={pointsCategories} />
+
         <section id="corsi">
           <Courses locations={courseLocations} />
         </section>
+
         <Rewards rewards={rewards} />
         <DaisyBoard rewards={rewards} />
         <StaffSection members={staffMembers} />
+
         <section id="contatti">
           <Locations locations={locations} />
         </section>
+
         <Footer />
       </main>
     </div>

@@ -38,7 +38,7 @@ export function Rewards({ rewards }: RewardsProps) {
           ))}
         </div>
       </div>
-      <p className="final-note">Piu punti accumuli -&gt; Piu il premio cresce</p>
+      <p className="final-note">Più punti accumuli -&gt; Più il premio cresce</p>
     </section>
   )
 }
