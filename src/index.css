@@ -1,0 +1,32 @@
+:root {
+  --black: #0f0f0f;
+  --green: #00ff66;
+  --orange: #ff8c00;
+  --white: #ffffff;
+  --panel: #141414;
+  --border: #2a2a2a;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.45;
+  color: var(--white);
+  background: var(--black);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #080909;
+  color: var(--white);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  min-height: 100vh;
+}
